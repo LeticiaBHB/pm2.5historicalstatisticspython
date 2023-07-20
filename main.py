@@ -42,16 +42,20 @@ df['Média'] = df[colunas_existentes].mean(axis=1)
 # Configurar a exibição dos valores float formatados
 pd.set_option('display.float_format', '{:.15f}'.format)
 
+# Calcular a soma total de cada linha (para as colunas de 1990 a 2020)
+df['Soma_Total'] = df[colunas_existentes].sum(axis=1)
+
 # Exibir todos os nomes da tabela Country junto com a média calculada para cada linha
-result = df[['Country', 'Média']]
+result = df[['Country', 'Soma_Total', 'Média']]
 
 print(result)
 
 # Calcular a soma completa dos valores da tabela CSV de 1990 até 2020
 soma_completa = df[colunas_existentes].sum().sum()
 
+# Salvar o dataframe result em um arquivo CSV
+result.to_csv('resultado.csv', index=False)
 
-# Calcular a soma completa dos valores da tabela CSV de 1990 até 2020
-soma_completa = df[colunas_existentes].sum().sum()
-
-print("Soma completa de 1990 até 2020:", "{:.15f}".format(soma_completa))
+# Criar um dataframe com a soma completa e salvar em um arquivo CSV
+soma_df = pd.DataFrame({'Soma_Completa': [soma_completa]})
+soma_df.to_csv('soma_completa.csv', index=False, float_format='%.15f')
