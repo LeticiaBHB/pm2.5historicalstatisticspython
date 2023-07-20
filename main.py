@@ -3,7 +3,7 @@ import pandas as pd
 import tkinter as tk
 from tkinter import messagebox
 
-############# comeco do programa #################
+############# Início do programa #################
 
 # Obtém o diretório atual
 current_dir = os.getcwd()
@@ -27,12 +27,24 @@ for col in colunas_existentes:
     df[col] = df[col].str.replace('.', '').str.replace(',', '')
     df[col] = pd.to_numeric(df[col], errors='coerce')  # Forçar conversão inválida para NaN
 
-# Substituir valores NaN (causados pelos traços) por 0 para calcular a média
-df = df.fillna(0)
-
 # Configurar a exibição dos valores float formatados
 pd.set_option('display.float_format', '{:.15g}'.format)
 
 # Calcular a média para cada coluna de ano (de 1990 a 2019) e armazenar em media_por_ano
 media_por_ano = df[colunas_existentes].mean()
 print(media_por_ano)
+
+# Calcular a média apenas para as colunas numéricas
+df['Média'] = df[colunas_existentes].mean(axis=1)
+
+# Configurar a exibição dos valores float formatados
+
+# Exibir todos os nomes da tabela Country junto com a média calculada para cada linha
+result = df[['Country', 'Média']]
+print(result)
+
+# Salvar o dataframe media_por_ano em um arquivo CSV
+media_por_ano.to_csv('media_por_ano.csv', index=False)
+
+# Salvar o dataframe result em um arquivo CSV
+result.to_csv('resultado.csv', index=False)
