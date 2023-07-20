@@ -46,3 +46,12 @@ pd.set_option('display.float_format', '{:.15f}'.format)
 result = df[['Country', 'Média']]
 
 print(result)
+
+# Calcular a soma completa dos valores da tabela CSV de 1990 até 2020
+soma_completa = df[colunas_existentes].sum().sum()
+
+
+# Calcular a soma completa dos valores da tabela CSV de 1990 até 2020
+soma_completa = df[colunas_existentes].sum().sum()
+
+print("Soma completa de 1990 até 2020:", "{:.15f}".format(soma_completa))
