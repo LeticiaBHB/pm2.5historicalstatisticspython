@@ -94,6 +94,26 @@ linhas_america.to_csv(nome_nova_planilha, index=False)
 
 print(f'Linhas relacionadas à América foram salvas em {nome_nova_planilha}.')
 
+# Ler a nova planilha com os dados relacionados à América
+nome_nova_planilha = 'america_dadospm25.csv'
+df_nova_planilha = pd.read_csv(nome_nova_planilha)
+
+# Calcular a soma dos valores da coluna 'Soma_Total'
+soma_total = df_nova_planilha['Soma_Total'].sum()
+
+# Adicionar a soma no final da planilha
+nova_linha = {'Country': 'Total América', 'Soma_Total': soma_total}
+df_nova_linha = pd.DataFrame([nova_linha])  # Criar um novo DataFrame com a nova linha
+df_nova_planilha = pd.concat([df_nova_planilha, df_nova_linha], ignore_index=True)
+
+# Salvar a planilha atualizada com a soma
+df_nova_planilha.to_csv(nome_nova_planilha, index=False)
+
+print(f'A soma total foi adicionada à planilha {nome_nova_planilha}.')
+
+
+
+
 ###ÁFRICA
 # Filtrando as linhas que contêm "américa" na coluna "B"
 filtro = df_copy['Continent'].str.contains('África', case=False)
@@ -104,6 +124,26 @@ nome_nova_planilha = 'africa_dadospm25.csv'
 linhas_africa.to_csv(nome_nova_planilha, index=False)
 
 print(f'Linhas relacionadas à África foram salvas em {nome_nova_planilha}.')
+
+# Ler a nova planilha com os dados relacionados à África
+nome_nova_planilha = 'africa_dadospm25.csv'
+df_nova_planilha = pd.read_csv(nome_nova_planilha)
+
+# Calcular a soma dos valores da coluna 'Soma_Total'
+soma_total = df_nova_planilha['Soma_Total'].sum()
+
+# Adicionar a soma no final da planilha
+nova_linha = {'Country': 'Total África', 'Soma_Total': soma_total}
+df_nova_linha = pd.DataFrame([nova_linha])  # Criar um novo DataFrame com a nova linha
+df_nova_planilha = pd.concat([df_nova_planilha, df_nova_linha], ignore_index=True)
+
+# Salvar a planilha atualizada com a soma
+df_nova_planilha.to_csv(nome_nova_planilha, index=False)
+
+print(f'A soma total foi adicionada à planilha {nome_nova_planilha}.')
+
+
+
 
 ###EUROPA
 # Filtrando as linhas que contêm "américa" na coluna "B"
@@ -116,6 +156,26 @@ linhas_europa.to_csv(nome_nova_planilha, index=False)
 
 print(f'Linhas relacionadas à Europa foram salvas em {nome_nova_planilha}.')
 
+# Ler a nova planilha com os dados relacionados à Europa
+nome_nova_planilha = 'europa_dadospm25.csv'
+df_nova_planilha = pd.read_csv(nome_nova_planilha)
+
+# Calcular a soma dos valores da coluna 'Soma_Total'
+soma_total = df_nova_planilha['Soma_Total'].sum()
+
+# Adicionar a soma no final da planilha
+nova_linha = {'Country': 'Total Europa', 'Soma_Total': soma_total}
+df_nova_linha = pd.DataFrame([nova_linha])  # Criar um novo DataFrame com a nova linha
+df_nova_planilha = pd.concat([df_nova_planilha, df_nova_linha], ignore_index=True)
+
+# Salvar a planilha atualizada com a soma
+df_nova_planilha.to_csv(nome_nova_planilha, index=False)
+
+print(f'A soma total foi adicionada à planilha {nome_nova_planilha}.')
+
+
+
+
 ###ÁSIA
 # Filtrando as linhas que contêm "américa" na coluna "B"
 filtro = df_copy['Continent'].str.contains('ásia', case=False)
@@ -127,6 +187,26 @@ linhas_asia.to_csv(nome_nova_planilha, index=False)
 
 print(f'Linhas relacionadas à Ásia foram salvas em {nome_nova_planilha}.')
 
+# Ler a nova planilha com os dados relacionados à Ásia
+nome_nova_planilha = 'asia_dadospm25.csv'
+df_nova_planilha = pd.read_csv(nome_nova_planilha)
+
+# Calcular a soma dos valores da coluna 'Soma_Total'
+soma_total = df_nova_planilha['Soma_Total'].sum()
+
+# Adicionar a soma no final da planilha
+nova_linha = {'Country': 'Total América', 'Soma_Total': soma_total}
+df_nova_linha = pd.DataFrame([nova_linha])  # Criar um novo DataFrame com a nova linha
+df_nova_planilha = pd.concat([df_nova_planilha, df_nova_linha], ignore_index=True)
+
+# Salvar a planilha atualizada com a soma
+df_nova_planilha.to_csv(nome_nova_planilha, index=False)
+
+print(f'A soma total foi adicionada à planilha {nome_nova_planilha}.')
+
+
+
+
 ###OCEANIA
 # Filtrando as linhas que contêm "américa" na coluna "B"
 filtro = df_copy['Continent'].str.contains('oceania', case=False)
@@ -137,3 +217,43 @@ nome_nova_planilha = 'oceania_dadospm25.csv'
 linhas_oceania.to_csv(nome_nova_planilha, index=False)
 
 print(f'Linhas relacionadas à Oceania foram salvas em {nome_nova_planilha}.')
+
+# Ler a nova planilha com os dados relacionados à América
+nome_nova_planilha = 'oceania_dadospm25.csv'
+df_nova_planilha = pd.read_csv(nome_nova_planilha)
+
+# Calcular a soma dos valores da coluna 'Soma_Total'
+soma_total = df_nova_planilha['Soma_Total'].sum()
+
+# Adicionar a soma no final da planilha
+nova_linha = {'Country': 'Total Oceania', 'Soma_Total': soma_total}
+df_nova_linha = pd.DataFrame([nova_linha])  # Criar um novo DataFrame com a nova linha
+df_nova_planilha = pd.concat([df_nova_planilha, df_nova_linha], ignore_index=True)
+
+# Salvar a planilha atualizada com a soma
+df_nova_planilha.to_csv(nome_nova_planilha, index=False)
+
+print(f'A soma total foi adicionada à planilha {nome_nova_planilha}.')
+
+
+#SOMAS TOTAIS AGRUPADAS:
+
+# Filtrar as linhas para cada continente e calcular as somas totais
+continentes = ['américa', 'África', 'europa', 'ásia', 'oceania']
+somas_totais = []
+
+for continente in continentes:
+    filtro = df_copy['Continent'].str.contains(continente, case=False)
+    linhas_continente = df_copy[filtro]
+    soma_total = linhas_continente['Soma_Total'].sum()
+    somas_totais.append({'Continente': continente, 'Soma_Total': soma_total})
+
+# Criar um DataFrame com as somas totais
+df_somas_totais = pd.DataFrame(somas_totais)
+
+# Salvar as somas totais em uma nova planilha
+nome_nova_planilha_total = 'somas_totais_dadospm25.csv'
+df_somas_totais.to_csv(nome_nova_planilha_total, index=False)
+
+print(f'Somas totais foram salvas na planilha {nome_nova_planilha_total}.')
+
