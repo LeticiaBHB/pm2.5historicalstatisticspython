@@ -1,9 +1,8 @@
-rt os
+import os
 import pandas as pd
 from tkinter import messagebox
 import matplotlib.pyplot as plt
 from matplotlib import ticker
-from matplotlib.widgets import Slider
 
 ############# comeco do programa #################
 
@@ -135,7 +134,6 @@ print(f'Somas totais foram salvas na planilha {nome_nova_planilha_total}.')
 ########################################################################################################################
 ## GRÁFICOS TOTAIS
 
-
 # Carregar o DataFrame result com os dados
 result = pd.read_csv('resultado.csv')
 
@@ -162,9 +160,6 @@ plt.ylabel('Total')
 # Exibir o gráfico
 plt.tight_layout()
 plt.show()
-
-
-
 
 ###GRAFICO POR CONTINENTE:
 
@@ -201,7 +196,50 @@ def format_number(value, _):
 # Utilizar o ScalarFormatter para formatar os números em notação científica no eixo y
 plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(format_number))
 
-
 # Exibir o gráfico
 plt.tight_layout()
 plt.show()
+####GRÁFICO SEPARADOS PARA CADA CONTINENTE
+
+
+
+# Função para criar o gráfico de barras para um continente específico
+def create_continent_bar_chart(continent_data):
+    # Definir o tamanho do gráfico
+    plt.figure(figsize=(12, 8))
+
+    # Criar o gráfico de barras
+    bars = plt.bar(continent_data['Country'], continent_data['Soma_Total'])
+
+    # Rotacionar os nomes dos países no eixo x para melhor visualização
+    plt.xticks(rotation=45, ha='right')  # 'ha' controla o alinhamento horizontal dos rótulos
+
+    # Adicionar título e labels aos eixos
+    plt.title(f'Total de cada país - {continent_data.iloc[0]["Continent"]}')
+    plt.xlabel('País')
+    plt.ylabel('Total')
+
+    # Exibir o gráfico
+    plt.show()
+
+# Lista dos nomes dos arquivos executáveis para cada continente
+continent_executables = [
+    'africa_dadospm25.csv',
+    'america_dadospm25.csv',
+    'europa_dadospm25.csv',
+    'asia_dadospm25.csv',
+    'oceania_dadospm25.csv'
+]
+# Loop para gerar o gráfico de barras para cada continente
+for executable in continent_executables:
+    try:
+        # Carregar o DataFrame com os dados do arquivo executável
+        df_copy = pd.read_csv(executable)
+
+        # Ordenar o DataFrame pelo valor total (Soma_Total) em ordem decrescente
+        df_sorted = df_copy.sort_values(by='Soma_Total', ascending=False)
+
+        # Criar o gráfico de barras para o continente
+        create_continent_bar_chart(df_sorted)
+    except FileNotFoundError:
+        print(f"Arquivo {executable} não encontrado. Certifique-se de que todos os arquivos estejam presentes no diretório.")
