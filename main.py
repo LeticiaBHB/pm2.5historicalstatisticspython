@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 from tkinter import messagebox
+import matplotlib.pyplot as plt
+from matplotlib import ticker
 
 ############# comeco do programa #################
 
@@ -129,3 +131,43 @@ df_somas_totais.to_csv(nome_nova_planilha_total, index=False)
 print(f'Somas totais foram salvas na planilha {nome_nova_planilha_total}.')
 
 
+########################################################################################################################
+## GRÁFICOS
+
+# Leitura dos dados das somas totais por continente
+df_somas_totais = pd.DataFrame(somas_totais)
+
+# Configurar o tamanho do gráfico
+plt.figure(figsize=(12, 8))
+
+# Criar o gráfico de barras
+bars = plt.bar(df_somas_totais['Continente'], df_somas_totais['Soma_Total'])
+
+# Adicionar valores nas barras
+for bar in bars:
+    height = bar.get_height()
+    plt.annotate(f'{height:,.0f}', xy=(bar.get_x() + bar.get_width() / 2, height),
+                 xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=10)
+
+# Adicionar títulos e labels
+plt.title('Somas Totais por Continente')
+plt.xlabel('Continente')
+plt.ylabel('Soma Total')
+
+# Rotacionar os rótulos em 45 graus para facilitar a leitura
+plt.xticks(rotation=45, ha='right')
+
+# Aumentar o espaço entre as barras para evitar sobreposição
+plt.tick_params(axis='x', which='major', pad=8)
+
+# Utilizar um FuncFormatter para formatar os números no eixo y
+def format_number(value, _):
+    return f'{value:,.0f}'
+
+# Utilizar o ScalarFormatter para formatar os números em notação científica no eixo y
+plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(format_number))
+
+
+# Exibir o gráfico
+plt.tight_layout()
+plt.show()
