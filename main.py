@@ -1,8 +1,9 @@
-import os
+rt os
 import pandas as pd
 from tkinter import messagebox
 import matplotlib.pyplot as plt
 from matplotlib import ticker
+from matplotlib.widgets import Slider
 
 ############# comeco do programa #################
 
@@ -132,7 +133,40 @@ print(f'Somas totais foram salvas na planilha {nome_nova_planilha_total}.')
 
 
 ########################################################################################################################
-## GRÁFICOS
+## GRÁFICOS TOTAIS
+
+
+# Carregar o DataFrame result com os dados
+result = pd.read_csv('resultado.csv')
+
+# Ordenar o DataFrame pelo valor total (Soma_Total) em ordem decrescente
+result_sorted = result.sort_values(by='Soma_Total', ascending=False)
+
+# Selecionar apenas os 20 primeiros países
+top_20_countries = result_sorted.head(48)
+
+# Definir o tamanho do gráfico
+plt.figure(figsize=(12, 8))
+
+# Criar o gráfico de barras
+bars = plt.bar(top_20_countries['Country'], top_20_countries['Soma_Total'])
+
+# Rotacionar os nomes dos países no eixo x para melhor visualização
+plt.xticks(rotation=45, ha='right')  # 'ha' controla o alinhamento horizontal dos rótulos
+
+# Adicionar título e labels aos eixos
+plt.title('Total de cada país')
+plt.xlabel('País')
+plt.ylabel('Total')
+
+# Exibir o gráfico
+plt.tight_layout()
+plt.show()
+
+
+
+
+###GRAFICO POR CONTINENTE:
 
 # Leitura dos dados das somas totais por continente
 df_somas_totais = pd.DataFrame(somas_totais)
